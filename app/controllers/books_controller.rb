@@ -3,19 +3,19 @@ class BooksController < ApplicationController
   before_action :authenticate_api_user!, only: %i[create update favorite destroy]
 
   def index
-    @books = Book.all
-    render json: @books.to_json(include: %i[user favorited_by])
+    @books = Book.all.order('created_at DESC')
+    render json: @books.to_json(include: %i[user favorited_by image])
   end
 
   def show
-    render json: @book.to_json(include: %i[user favorited_by])
+    render json: @book.to_json(include: %i[user favorited_by image])
   end
 
   def create
     @book = Book.new(book_params)
 
     if @book.save
-      render json: @book.to_json(include: %i[user favorited_by]), status: :created, location: @book
+      render json: @book.to_json(include: %i[user favorited_by image]), status: :created, location: @book
     else
       render json: @book.erros.full_messages, status: :unprocessable_entity
     end
@@ -23,7 +23,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      render json: @book.to_json(include: %i[user favorited_by])
+      render json: @book.to_json(include: %i[user favorited_by image])
     else
       render json: @book.errors.full_messages, status: :unprocessable_entity
     end
@@ -31,7 +31,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    render json: @book.to_json(include: %i[user favorited_by])
+    render json: @book.to_json(include: %i[user favorited_by image])
   end
 
   def favorite
@@ -54,6 +54,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:item).permit(:user_id, :title, :author, :description, :genre, :ratings)
+    params.require(:item).permit(:user_id, :title, :author, :description, :genre, :ratings, :image)
   end
 end

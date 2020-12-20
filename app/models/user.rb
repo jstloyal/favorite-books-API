@@ -8,13 +8,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 
-  validates :email, presence: true, length: { minimum: 6, maximum: 30 }
-  validates :name, presence: true, length: { minimum: 6, maximum: 35 }
-  validates :nickname, presence: true, length: { minimum: 6, maximum: 18 }
-
-  validates_uniqueness_of :email, on: :create
-  
   has_many :books, dependent: :destroy
   has_many :favorite_books, dependent: :destroy
   has_many :favorites, through: :favorite_books, source: :item, dependent: :destroy
+  has_one_attached :image
+
+  validates :email, presence: true, length: { minimum: 6, maximum: 30 }
+  validates :name, presence: true, length: { minimum: 6, maximum: 35 }
+  validates :nickname, presence: true, length: { minimum: 6, maximum: 18 }
+  validates_uniqueness_of :email, on: :create
 end
