@@ -21,23 +21,21 @@ gem 'rubocop', '~>0.81.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
-# Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
-gem 'devise'
-gem 'devise-jwt'
+# gem 'devise'
+# gem 'devise-jwt'
+gem 'devise_token_auth'
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
 group :development do
-  gem 'listen', '~> 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'hirb'
+  gem 'listen'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
