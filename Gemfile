@@ -25,8 +25,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
-# gem 'devise'
-# gem 'devise-jwt'
 gem 'devise_token_auth'
 
 group :development, :test do
@@ -36,6 +34,19 @@ end
 group :development do
   gem 'hirb'
   gem 'listen'
+end
+
+group :development, :test do
+  gem 'pry-rails'
+  %w[rspec-core rspec-rails rspec-expectations rspec-mocks rspec-support].each do |lib|
+    gem lib, :git => "https://github.com/rspec/#{lib}.git", :branch => 'master'
+  end
+end
+
+group :test do
+  gem 'factory_bot_rails'
+  gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
