@@ -1,12 +1,12 @@
 require "rails_helper"
 RSpec.describe "Session", :type => :request do
   before(:each) do
-    @user =  FactoryBot.create(:user) 
-    @sign_in_url = '/api/v1/auth/sign_in' 
+    @user = FactoryBot.create(:user)
+    @sign_in_url = '/api/v1/auth/sign_in'
     @sign_out_url = '/api/v1/auth/sign_out'
     @login_params = {
-        email: @user.email,
-        password: @user.password
+      email: @user.email,
+      password: @user.password
     }
   end
   describe 'POST /api/v1/auth/sign_in' do

@@ -1,12 +1,12 @@
 require "rails_helper"
 RSpec.describe "Registration", :type => :request do
   before(:each) do
-    @sign_up_url = '/api/v1/auth/' 
+    @sign_up_url = '/api/v1/auth/'
     @signup_params = {
-        email: 'user@example.com',
-        password: '12345678',
-        nickname: 'crisBros',
-        name: 'Cristian Example Com'
+      email: 'user@example.com',
+      password: '12345678',
+      nickname: 'crisBros',
+      name: 'Cristian Example Com'
     }
   end
   describe 'Email registration method' do
@@ -35,13 +35,13 @@ RSpec.describe "Registration", :type => :request do
           expect(parsed_response['status']).to eq('success')
         end
         it 'creates new user' do
-          expect{
-            post @sign_up_url, params: @signup_params.merge({email: "test@example.com"})
+          expect {
+            post @sign_up_url, params: @signup_params.merge({ email: "test@example.com" })
           }.to change(User, :count).by(1)
         end
       end
       context 'when signup params is invalid' do
-          before { post @sign_up_url }
+        before { post @sign_up_url }
         it 'returns unprocessable entity 422' do
           expect(response.status).to eq 422
         end
