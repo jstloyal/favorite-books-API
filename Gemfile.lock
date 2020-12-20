@@ -6,53 +6,6 @@ GIT
     faker (2.15.1)
       i18n (>= 1.6, < 2)
 
-GIT
-  remote: https://github.com/rspec/rspec-core.git
-  revision: e7c5d030966a7e8dad3e0a67c61920c4f2437c15
-  branch: master
-  specs:
-    rspec-core (3.10.0.pre)
-      rspec-support (= 3.10.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-expectations.git
-  revision: e63ff4765e1cd2798b02ddddad259f1104ef87a5
-  branch: master
-  specs:
-    rspec-expectations (3.10.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.10.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-mocks.git
-  revision: 0a52e0a86b126b4bab94d277b2ad99a7492dc37d
-  branch: master
-  specs:
-    rspec-mocks (3.10.0.pre)
-      diff-lcs (>= 1.2.0, < 2.0)
-      rspec-support (= 3.10.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-rails.git
-  revision: 01704c50c146f720db914724c25681781ecefb23
-  branch: master
-  specs:
-    rspec-rails (4.1.0.pre)
-      actionpack (>= 4.2)
-      activesupport (>= 4.2)
-      railties (>= 4.2)
-      rspec-core (= 3.10.0.pre)
-      rspec-expectations (= 3.10.0.pre)
-      rspec-mocks (= 3.10.0.pre)
-      rspec-support (= 3.10.0.pre)
-
-GIT
-  remote: https://github.com/rspec/rspec-support.git
-  revision: 6447b0c2c9d1cd3e1504784fb85675ca9ae7b7c3
-  branch: master
-  specs:
-    rspec-support (3.10.0.pre)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -218,6 +171,23 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.4)
+    rspec-core (3.10.0)
+      rspec-support (~> 3.10.0)
+    rspec-expectations (3.10.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-mocks (3.10.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.10.0)
+    rspec-rails (4.0.1)
+      actionpack (>= 4.2)
+      activesupport (>= 4.2)
+      railties (>= 4.2)
+      rspec-core (~> 3.9)
+      rspec-expectations (~> 3.9)
+      rspec-mocks (~> 3.9)
+      rspec-support (~> 3.9)
+    rspec-support (3.10.0)
     rubocop (0.81.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -264,11 +234,11 @@ DEPENDENCIES
   puma (~> 4.1)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.4)
-  rspec-core!
-  rspec-expectations!
-  rspec-mocks!
-  rspec-rails!
-  rspec-support!
+  rspec-core
+  rspec-expectations
+  rspec-mocks
+  rspec-rails
+  rspec-support
   rubocop (~> 0.81.0)
   tzinfo-data
 
