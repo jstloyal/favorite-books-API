@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show update destroy]
-  before_action :authenticate_api_user!, only: %i[create update favorite destroy]
+  before_action :authenticate_api_user!, only: %i[update favorite destroy]
 
   def index
     @books = Book.all.order('created_at DESC')
@@ -54,6 +54,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:item).permit(:user_id, :title, :author, :description, :genre, :ratings, :image)
+    params.permit(:user_id, :title, :author, :description, :genre, :ratings, :image)
   end
 end
