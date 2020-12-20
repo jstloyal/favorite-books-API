@@ -15,22 +15,23 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 
     if @book.save
-      render json: @book, status: :created, location: @book
+      render json: @book.to_json(include: %i[user favorited_by]), status: :created, location: @book
     else
-      render json: @book.erros, status: :unprocessable_entity
+      render json: @book.erros.full_messages, status: :unprocessable_entity
     end
   end
 
   def update
     if @book.update(book_params)
-      render json: @book
+      render json: @book.to_json(include: %i[user favorited_by])
     else
-      render json: @book.errors, status: :unprocessable_entity
+      render json: @book.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def destroy
     @book.destroy
+    render json: @book.to_json(include: %i[user favorited_by])
   end
 
   def favorite
