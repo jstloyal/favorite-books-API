@@ -36,13 +36,13 @@ class BooksController < ApplicationController
   def favorite
     type = params[:type]
     if type == 'favorite'
-      current_user.favorites << @recipe
+      current_api_user.favorites << @recipe
       render json: { success: true, message: "You favorited #{@recipe.title}" }
     elsif type == 'unfavorite'
-      current_user.favorites.delete(@recipe)
+      current_api_user.favorites.delete(@recipe)
       render json: { success: true, message: "Unfavorited #{@recipe.title}" }
     else
-      render json: { success: false }, status: :unprocessable_entity
+      render json: { success: false, message: "Type of request is missing (favorite/unfavorite)" }, status: :unprocessable_entity
     end
   end
 
