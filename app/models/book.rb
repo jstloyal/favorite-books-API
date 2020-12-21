@@ -13,6 +13,6 @@ class Book < ApplicationRecord
   validates :image, presence: true
   
   def image_url
-    image.nil? nil : rails_representation_url(image.variant(resize: '80'), host: 'localhost:3000')
+    image.nil? nil : rails_representation_url(image.variant(resize: '80'), host: 'https://favbooks-api.herokuapp.com/')
   end
 end
