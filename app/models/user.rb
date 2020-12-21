@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   has_many :favorites, through: :favorite_books, source: :item, dependent: :destroy
   has_one_attached :image
 
-  validates :email, presence: true, length: { minimum: 6, maximum: 30 }
+  validates :email, presence: true, length: { minimum: 6, maximum: 30 }, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :name, presence: true, length: { minimum: 6, maximum: 35 }
   validates :nickname, presence: true, length: { minimum: 6, maximum: 18 }
   validates_uniqueness_of :email, on: :create
