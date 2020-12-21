@@ -24,17 +24,18 @@
 
 ### Currently working endpoints for books
 
-- `GET /items` - all items from the database.
-- `GET /items/:id` - get items details by id.
-- `POST /items/` - create a new item
-- `DELETE /items/:id` - find the item by id and delete it from the database
+- `GET /books` - all books from the database.
+- `GET /books/:id` - get books details by id.
+- `POST /books/` - create a new book
+- `DELETE /books/:id` - find the book by id and delete it from the database
 
 ### Current working endpoints for sessions and registrations
 
 - `POST /api/v1/auth` - Create a new user
 - `POST /api/v1/auth/sign_in` - Login the user
 
-## Live Link  (Heroku)
+## Live Link (Heroku)
+
 [Project live link](https://favbooks-api.herokuapp.com/)
 
 ### Built With
@@ -45,7 +46,7 @@ This project was built using these technologies.
 - Ruby on Rail
 - API
 - devise_token_auth for login funtionality
-- Using AWS S3 with Active Storage for storing item images
+- Using AWS S3 with Active Storage for storing book images
 - GitHub
 - Heroku
 

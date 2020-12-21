@@ -14,26 +14,20 @@ RSpec.describe Book, type: :model do
     it { is_expected.to validate_presence_of(:genre) }
 
     it do
-      should validate_length_of(:title).is_at_least(2).is_at_most(30)
+      should validate_length_of(:title).is_at_least(2).is_at_most(40)
     end
-
     it do
       should validate_length_of(:genre).is_at_least(3).is_at_most(15)
     end
-
     it do
-      should validate_length_of(:description).is_at_least(10).is_at_most(400)
+      should validate_length_of(:description).is_at_least(6).is_at_most(50_000)
     end
   end
 
   describe 'scopes' do
     before :each do
       @user = FactoryBot.create(:user)
-      @book = @user.books.create!(title: 'Example',description: 'Example desx', genre: 'fiction', author: 'Example use')
-    end
-
-    it 'can be created by user' do
-      expect(Book.first).to eq(@book)
+      @book = @user.books.create!(title: 'Example', description: 'Example desx', author: 55.35, genre: 'Example use')
     end
 
     it 'can be accessed by the author' do

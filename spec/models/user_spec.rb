@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
 
   describe 'scopes' do
     before :each do
-      @user = User.create!(name: 'Bimpe', email: 'bimbim@gmail.com', password: '123456', nickname: 'bimbim')
+      @user = User.create!(name: 'Bimpes', email: 'bimbim@gmail.com', password: '123456', nickname: 'bimbim')
     end
 
     it 'can be created and accesed' do

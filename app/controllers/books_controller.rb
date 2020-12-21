@@ -4,7 +4,6 @@ class BooksController < ApplicationController
 
   def index
     @books = Book.all.order('created_at DESC')
-    # render json: @books.to_json(include: %i[user favorited_by image])
     render json: serialize_books(@books)
   end
 
@@ -16,16 +15,14 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 
     if @book.save
-      # render json: @book.to_json(include: %i[user favorited_by image]), status: :created, location: @book
       render json: serialize_book(@book), status: :created, location: @book
     else
-      render json: @book.erros.full_messages, status: :unprocessable_entity
+      render json: @book.errors.full_messages, status: :unprocessable_entity
     end
   end
 
   def update
     if @book.update(book_params)
-      # render json: @book.to_json(include: %i[user favorited_by image])
       render json: serialize_book(@book)
     else
       render json: @book.errors.full_messages, status: :unprocessable_entity
@@ -46,7 +43,7 @@ class BooksController < ApplicationController
       current_api_user.favorites.delete(@book) if current_api_user.favorites.include? @book
       render json: { success: true, message: "Unfavorited #{@book.title}" }
     else
-      render json: { success: false, message: "Type of request is missing (favorite/unfavorite)" }, status: :unprocessable_entity
+      render json: { success: false, message: 'Provide a type (favorite/unfavorite)' }, status: :unprocessable_entity
     end
   end
 

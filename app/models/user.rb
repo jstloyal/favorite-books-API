@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User < ActiveRecord::Base
   extend Devise::Models
   # Include default devise modules. Others available are:
@@ -10,11 +8,11 @@ class User < ActiveRecord::Base
 
   has_many :books, dependent: :destroy
   has_many :favorite_books, dependent: :destroy
-  has_many :favorites, through: :favorite_books, source: :item, dependent: :destroy
+  has_many :favorites, through: :favorite_books, source: :book, dependent: :destroy
   has_one_attached :image
 
-  validates :email, presence: true, length: { minimum: 6, maximum: 30 }, format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :name, presence: true, length: { minimum: 6, maximum: 35 }
-  validates :nickname, presence: true, length: { minimum: 6, maximum: 18 }
+  validates :email, presence: true, length: { minimum: 6, maximum: 80 }, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :name, presence: true, length: { minimum: 6, maximum: 80 }
+  validates :nickname, presence: true, length: { minimum: 6, maximum: 20 }
   validates_uniqueness_of :email, on: :create
 end

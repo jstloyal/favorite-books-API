@@ -37,7 +37,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'pry-rails'
   %w[rspec-core rspec-rails rspec-expectations rspec-mocks rspec-support].each do |lib|
     gem lib
   end

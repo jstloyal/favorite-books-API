@@ -3,7 +3,7 @@ require 'json'
 
 RSpec.describe '/books', type: :request do
   before :each do
-    @user = User.create!(name: 'Bimpe', email: 'bimbim@gmail.com', password: '123456', nickname: 'Bimbim')
+    @user = User.create!(name: 'Bimpes', email: 'bimbim@gmail.com', password: '123456', nickname: 'Bimbim')
     post '/api/v1/auth', params: { email: @user.email, password: '123456' }
   end
 
@@ -14,7 +14,7 @@ RSpec.describe '/books', type: :request do
     end
 
     it 'returns an array with the books in the database' do
-      img = fixture_file_upload('files/photo.jpg', 'image/jpg')
+      img = fixture_file_upload('files/photo.jpeg', 'image/jpeg')
       params = { title: 'Diallo is here', description: 'Read before you leap', author: 'Manuel', genre: 'fiction', user_id: @user.id, image: img }
       post books_url, params: params
       get books_url
@@ -24,14 +24,8 @@ RSpec.describe '/books', type: :request do
   end
 
   describe 'GET /books/:id' do
-    it 'returns an error message if not found' do
-      expect do
-        post books_url(999)
-      end.to raise_error(ActionsController::RoutingError)
-    end
-
     it 'returns the element if found' do
-      img = fixture_file_upload('files/photo.jpg', 'image/jpg')
+      img = fixture_file_upload('files/photo.jpeg', 'image/jpeg')
       params = { title: 'Diallo', description: 'Read before you leap', author: 'Manuel', genre: 'fiction', user_id: @user.id, image: img }
       post books_url, params: params
       book = JSON.parse(response.body)
@@ -46,7 +40,7 @@ RSpec.describe '/books', type: :request do
     context 'with valid parameters' do
       it 'creates a new Book' do
         expect do
-          img = fixture_file_upload('files/photo.jpg', 'image/jpg')
+          img = fixture_file_upload('files/photo.jpeg', 'image/jpeg')
           params = { title: 'Diallo', description: 'Read before you leap', author: 'Manuel', genre: 'fiction', user_id: @user.id, image: img }
           post books_url, params: params
         end.to change(Book, :count).by(1)
@@ -64,7 +58,7 @@ RSpec.describe '/books', type: :request do
 
   describe 'POST /books/:id/favorite' do
     it 'does not work if there is not authenticated_api_user whis is active only when using the API' do
-      img = fixture_file_upload('files/photo.jpg', 'image/jpg')
+      img = fixture_file_upload('files/photo.jpeg', 'image/jpeg')
       params = { title: 'Diallo', description: 'Read before you leap', author: 'Manuel', genre: 'fiction', user_id: @user.id, image: img }
       post books_url, params: params
       book = JSON.parse(response.body)
@@ -78,7 +72,7 @@ RSpec.describe '/books', type: :request do
 
   describe 'DELETE /books/:id' do
     it 'does not work if not signed in, cannot sign in due to rails using authenticated_api_user in the controller' do
-      img = fixture_file_upload('files/photo.jpg', 'image/jpg')
+      img = fixture_file_upload('files/photo.jpeg', 'image/jpeg')
       params = { title: 'Diallo', description: 'Read before you leap', author: 'Manuel', genre: 'fiction', user_id: @user.id, image: img }
       post books_url, params: params
       book = JSON.parse(response.body)
