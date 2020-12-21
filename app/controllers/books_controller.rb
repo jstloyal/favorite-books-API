@@ -9,7 +9,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    render json: @book.to_json(include: %i[user favorited_by image])
+    render json: serialize_book(@book)
   end
 
   def create
@@ -34,7 +34,7 @@ class BooksController < ApplicationController
 
   def destroy
     @book.destroy
-    render json: @book.to_json(include: %i[user favorited_by])
+    render json: serialize_book(@book)
   end
 
   def favorite
@@ -67,6 +67,7 @@ class BooksController < ApplicationController
   def serialize_book(book)
     {
       id: book.id,
+      title: book.title,
       description: book.description,
       author: book.author,
       genre: book.genre,
