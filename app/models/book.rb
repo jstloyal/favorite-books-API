@@ -11,9 +11,12 @@ class Book < ApplicationRecord
   validates :author, presence: true, length: { minimum: 3, maximum: 30 }
   validates :genre, presence: true, length: { minimum: 3, maximum: 15 }
   validates :image, presence: true
+
+  def set_host
+    Rails.env.production? ? 'https://favbooks-api.herokuapp.com/' : 'http://localhost:3000'
+  end
   
   def image_url
-    image.nil? nil : rails_representation_url(image.variant(resize: '200'), host: 'http://localhost:3000')
-    # image.nil? nil : rails_representation_url(image.variant(resize: '200'), host: 'https://favbooks-api.herokuapp.com/')
+    image.nil? nil : rails_representation_url(image.variant(resize: '400x600'), host: set_host)
   end
 end
