@@ -1,5 +1,5 @@
-require "rails_helper"
-RSpec.describe "Session", :type => :request do
+require 'rails_helper'
+RSpec.describe 'Session', type: :request do
   before(:each) do
     @user = FactoryBot.create(:user)
     @sign_in_url = '/api/v1/auth/sign_in'

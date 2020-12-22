@@ -1,5 +1,5 @@
-require "rails_helper"
-RSpec.describe "Registration", :type => :request do
+require 'rails_helper'
+RSpec.describe 'Registration', type: :request do
   before(:each) do
     @sign_up_url = '/api/v1/auth/'
     @signup_params = {
@@ -35,9 +35,9 @@ RSpec.describe "Registration", :type => :request do
           expect(parsed_response['status']).to eq('success')
         end
         it 'creates new user' do
-          expect {
-            post @sign_up_url, params: @signup_params.merge({ email: "test@example.com" })
-          }.to change(User, :count).by(1)
+          expect do
+            post @sign_up_url, params: @signup_params.merge({ email: 'test@example.com' })
+          end.to change(User, :count).by(1)
         end
       end
       context 'when signup params is invalid' do
