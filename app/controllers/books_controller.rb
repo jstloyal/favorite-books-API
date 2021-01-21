@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: %i[show update destroy]
+  before_action :set_book, only: %i[show update destroy favorite]
   before_action :authenticate_api_user!, only: %i[update favorite destroy]
 
   def index
