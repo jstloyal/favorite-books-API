@@ -14,11 +14,11 @@ amazon:
   region: us-east-1
   bucket: <%= Rails.application.credentials.dig(:aws, :bucket) %>
 
-# Remember not to checkin your GCS keyfile to a repository
+# Remember not to checking your GCS key file to a repository
 # google:
 #   service: GCS
 #   project: your_project
-#   credentials: <%= Rails.root.join("path/to/gcs.keyfile") %>
+#   credentials: <%= Rails.root.join("path/to/gcs.key file") %>
 #   bucket: your_own_bucket
 
 # Use rails credentials:edit to set the Azure Storage secret (as azure_storage:storage_access_key)
