@@ -1,3 +1,3 @@
 class RegistrationsController < Devise::SessionsController
-  respond_to :json
+  respond_to? :json
 end

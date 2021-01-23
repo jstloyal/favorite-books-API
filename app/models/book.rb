@@ -23,7 +23,7 @@ class Book < ApplicationRecord
 
   def image_url
     if image.nil?
-      "<img src='     /600/800/man' alt='Book' />"
+      "<img src='http://loremflickr.com/600/800/book' alt='Book'/>"
     else
       rails_representation_url(image.variant(resize: '600x800'), host: set_host)
     end
